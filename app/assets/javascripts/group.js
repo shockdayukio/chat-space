@@ -4,7 +4,7 @@ $(document).on('turbolinks:load', function(){
   var search_list = $("#user-search-result");
   function appendUser(user){
     // var html = `<li class="searched_user">${ user.name }</li>`
-    var html =  '<li>' +
+    var html =  '<li class="clearfix">' +
                 '<div class="chat-group-user__name">' + user.name + '</div>' +
                 '<button class="chat-group-user__btn chat-group-user__btn--add" id="add_button" type="button" data-user-name="'+ user.name +'" + data-user-id="'+user.id+'">' +'追加' + '</button>' +
                 '</li>'
@@ -44,7 +44,7 @@ $(document).on('turbolinks:load', function(){
   //検索結果をクリック&チャットメンバーに追加
   function appendUserToGroup(name, id){
     var member_list = $("#chat_users");
-    var html =  '<li class="chat-group-user">' +
+    var html =  '<li class="clearfix">' +
                 '<div class="chat-group-user__name">' + name + '</div>' +
                 '<button class="chat-group-user__btn chat-group-user__btn--remove" type="button" data-user-name="'+ name +'" + data-user-id="'+id+'">' +'削除' + '</button>' + '</li>' +
                 '<input type="hidden" name="group[user_ids][]" value="' + id + '">'
