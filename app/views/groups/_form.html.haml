@@ -4,22 +4,20 @@
       = f.label "グループ名" , class: "chat-group-form__label"
     .chat-group-form__field--right
       = f.text_field :name, placeholder: 'グループ名を入力してください', id: 'chat_group_name', class: 'chat-group-form__input' , autofocus: true
+
   .chat-group-form__field.clearfix
     .chat-group-form__field--left
       = f.label "チャットメンバーを追加" , class: "chat-group-form__label"
     .chat-group-form__field--right
-      .chat-group-form__search.clearfix
-      = f.text_field :name, placeholder: '追加したいユーザー名を入力してください', id: 'chat_users', class: 'chat-group-form__input search_users' , autofocus: true
-      #user-search-result
-        %ul.user-search-result
-    .chat-group-user
-      .chat-group-form__field--left
-        = f.label "チャットメンバー" , class: "chat-group-form__label"
-      .chat-group-form__field--right
-        - @users.each do |user|
-          .chat-group-user__name
-            = user.name
+      %input.chat-group-form__input.search_users.clearfix{ placeholder: "追加したいユーザー名を入力してください", type: "text"}
+      %ul#user-search-result.chat-group-user
+
+  .chat-group-form__field.clearfix
+    .chat-group-form__field--left
+      = f.label "チャットメンバー" , class: "chat-group-form__label"
+    .chat-group-form__field--right
+      %ul#chat_users.chat-group-user
   .chat-group-form__field.clearfix
     .chat-group-form__field--left
     .chat-group-form__field--right
-      = f.submit "Save", class: "chat-group-form__action-btn"
+      = f.submit "Save", class: "chat-group-form__action-btn", id: "save"

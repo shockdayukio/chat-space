@@ -9,9 +9,16 @@ class GroupsController < ApplicationController
 
   def new
     @group = Group.new
+    @user = User.find(selected_user_params[:selected_user_id]) if selected_user_params[:selected_user_id]
+
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
 
   def create
+    binding.pry
     @group = Group.create(group_params)
     if @group.save
       redirect_to group_messages_path(@group), notice: "グループ作成が完了しました。"
@@ -37,6 +44,10 @@ class GroupsController < ApplicationController
   private
   def group_params
     params.require(:group).permit(:name,{ user_ids: []})
+  end
+
+  def selected_user_params
+    params.permit(:selected_user_id)
   end
 
   def set_group
