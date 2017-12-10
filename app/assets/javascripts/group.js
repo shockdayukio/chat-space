@@ -46,7 +46,7 @@ $(document).on('turbolinks:load', function(){
     var member_list = $("#chat_users");
     var html =  '<li class="clearfix">' +
                 '<div class="chat-group-user__name">' + name + '</div>' +
-                '<button class="chat-group-user__btn chat-group-user__btn--remove" type="button" data-user-name="'+ name +'" + data-user-id="'+id+'">' +'削除' + '</button>' + '</li>' +
+                '<button class="chat-group-user__btn chat-group-user__btn--remove" type="button" data-user-name="'+ name +'"data-user-id="'+id+'">' +'削除' + '</button>' + '</li>' +
                 '<input type="hidden" name="group[user_ids][]" value="' + id + '">'
     member_list.append(html);
   }
