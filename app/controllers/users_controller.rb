@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   def search
-    @users = User.where.not(id: current_user.id).where('name LIKE(?)', "%#{user_params[:keyword]}%")
-    # current_userを検索結果に表示しない
+    @users = User.where.not(id: user_params[:not_searched_list]).where('name LIKE(?)', "%#{user_params[:keyword]}%")
     respond_to do |format|
       format.html
       format.json
@@ -9,6 +8,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.permit(:keyword)
+    params.permit(:keyword, not_searched_list: [])
   end
 end

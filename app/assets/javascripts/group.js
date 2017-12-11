@@ -18,10 +18,14 @@ $(document).on('turbolinks:load', function(){
   $(".search_users").on("keyup", function(){
     var input = $(".search_users").val();
 
+    // グループに追加済みのユーザを検索結果に表示しないための配列を定義
+    var not_searched_list = []
+    $('#chat_users input').each(function(i){not_searched_list.push(this.value);})
+
     $.ajax({
       url: '/users/search',
       type: 'POST',
-      data: { keyword: input },
+      data: { keyword: input, not_searched_list: not_searched_list },
       dataType: 'json'
     })
   // message.jsと違い、contentTypeとprocessDataを指定しない。なぜ？
@@ -41,24 +45,25 @@ $(document).on('turbolinks:load', function(){
       alert('ユーザー検索に失敗しました。');
     });
   });
+
   //検索結果をクリック&チャットメンバーに追加
   function appendUserToGroup(name, id){
-    var member_list = $("#chat_users");
     var html =  '<li class="clearfix">' +
                 '<div class="chat-group-user__name">' + name + '</div>' +
-                '<button class="chat-group-user__btn chat-group-user__btn--remove" type="button" data-user-name="'+ name +'"data-user-id="'+id+'">' +'削除' + '</button>' + '</li>' +
-                '<input type="hidden" name="group[user_ids][]" value="' + id + '">'
-    member_list.append(html);
+                '<button class="chat-group-user__btn chat-group-user__btn--remove" type="button" data-user-name="'+ name +'"data-user-id="'+id+'">' +'削除' + '</button>' +
+                '<input type="hidden" name="group[user_ids][]" value="' + id + '">'+
+                '</li>'
+    $("#chat_users").append(html);
   }
 
   $("#user-search-result").on("click", "#add_button", function(){
     var selected_user_id = $(event.target).attr('data-user-id');
     var selected_user_name = $(event.target).attr('data-user-name');
     appendUserToGroup(selected_user_name, selected_user_id);
+    $(event.target).parent("li").remove();
   });
+
   $("#chat_users").on("click", ".chat-group-user__btn--remove", function(){
     $(event.target).parent("li").remove();
   });
 });
-
-
