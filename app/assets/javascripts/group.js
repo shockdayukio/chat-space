@@ -3,7 +3,6 @@ $(document).on('turbolinks:load', function(){
   //検索&検索結果に追加
   var search_list = $("#user-search-result");
   function appendUser(user){
-    // var html = `<li class="searched_user">${ user.name }</li>`
     var html =  '<li class="clearfix">' +
                 '<div class="chat-group-user__name">' + user.name + '</div>' +
                 '<button class="chat-group-user__btn chat-group-user__btn--add" id="add_button" type="button" data-user-name="'+ user.name +'" + data-user-id="'+user.id+'">' +'追加' + '</button>' +
