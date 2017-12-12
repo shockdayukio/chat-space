@@ -19,13 +19,13 @@ $(document).on('turbolinks:load', function(){
     var input = $(".search_users").val();
 
     // グループに追加済みのユーザを検索結果に表示しないための配列を定義
-    var not_searched_list = []
-    $('#chat_users input').each(function(i){not_searched_list.push(this.value);})
+    var group_members = []
+    $('#chat_users input').each(function(i){group_members.push(this.value);})
 
     $.ajax({
       url: '/users/search',
       type: 'POST',
-      data: { keyword: input, not_searched_list: not_searched_list },
+      data: { keyword: input, group_members: group_members },
       dataType: 'json'
     })
   // message.jsと違い、contentTypeとprocessDataを指定しない。なぜ？
