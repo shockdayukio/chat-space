@@ -10,8 +10,8 @@ $(document).on('turbolinks:load', function(){
     search_list.append(html);
   }
 
-  function insertMessageIntoHtml(user){
-    var html = `<li>${ user }</li>`
+  function insertMessageIntoHtml(message){
+    var html = `<li>${ message }</li>`
     search_list.append(html);
   }
 
