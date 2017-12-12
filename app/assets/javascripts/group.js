@@ -9,7 +9,8 @@ $(document).on('turbolinks:load', function(){
                 '</li>'
     search_list.append(html);
   }
-  function appendNoUser(user){
+
+  function insertMessageIntoHtml(user){
     var html = `<li>${ user }</li>`
     search_list.append(html);
   }
@@ -37,7 +38,7 @@ $(document).on('turbolinks:load', function(){
         });
       }
       else {
-        appendNoUser("一致するユーザーはいません");
+        insertMessageIntoHtml("一致するユーザーはいません");
       }
     })
     .fail(function(data){
