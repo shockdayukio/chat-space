@@ -23,8 +23,8 @@ $(document).on('turbolinks:load', function(){
     $('#chat_users input').each(function(i){group_members.push(this.value);})
 
     $.ajax({
-      url: '/users/search',
-      type: 'POST',
+      url: '/users',
+      type: 'GET',
       data: { keyword: input, group_members: group_members },
       dataType: 'json'
     })
