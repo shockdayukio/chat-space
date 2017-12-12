@@ -9,7 +9,7 @@
     .chat-group-form__field--left
       = f.label "チャットメンバーを追加" , class: "chat-group-form__label"
     .chat-group-form__field--right
-      %input.chat-group-form__input.search_users.clearfix{ placeholder: "追加したいユーザー名を入力してください", type: "text"}
+      = text_field_tag :keyword, "", placeholder: "追加したいユーザー名を入力してください", class: "chat-group-form__input search_users clearfix"
       %ul#user-search-result.chat-group-user
 
   .chat-group-form__field.clearfix
@@ -20,7 +20,7 @@
         %li.clearfix
           .chat-group-user__name
             = current_user.name
-          %input{type: "hidden", name: "group[user_ids][]", value: current_user.id}
+          = hidden_field_tag "group[user_ids][]", current_user.id
   .chat-group-form__field.clearfix
     .chat-group-form__field--left
     .chat-group-form__field--right
