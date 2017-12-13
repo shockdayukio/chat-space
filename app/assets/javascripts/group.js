@@ -11,6 +11,7 @@ $(document).on('turbolinks:load', function(){
   }
 
   function insertMessageIntoHtml(message){
+    var search_list = $("#user-search-result");
     var html = `<li>${ message }</li>`
     search_list.append(html);
   }
