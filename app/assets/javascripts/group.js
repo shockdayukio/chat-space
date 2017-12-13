@@ -25,7 +25,7 @@ $(document).on('turbolinks:load', function(){
     $.ajax({
       url: '/users',
       type: 'GET',
-      data: { keyword: input, group_members: group_members },
+      data: { user: { name: input, group_members: group_members } },
       dataType: 'json'
     })
   // message.jsと違い、contentTypeとprocessDataを指定しない。なぜ？
