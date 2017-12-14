@@ -7,9 +7,6 @@ class UsersController < ApplicationController
     end
   end
 
-  # def user_params
-  #   params.permit(:keyword, group_members: [])
-  # end
   def user_params
     params.require(:user).permit(:name, group_members: [])
   end
