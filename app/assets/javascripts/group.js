@@ -10,7 +10,7 @@ $(document).on('turbolinks:load', function(){
     search_list.append(html);
   }
 
-  function insertMessageIntoHtml(message){
+  function appendMessage(message){
     var search_list = $("#user-search-result");
     var html = `<li>${ message }</li>`
     search_list.append(html);
@@ -48,7 +48,7 @@ $(document).on('turbolinks:load', function(){
         });
       }
       else {
-        insertMessageIntoHtml("一致するユーザーはいません");
+        appendMessage("一致するユーザーはいません");
       }
     })
     .fail(function(data){
