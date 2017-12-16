@@ -11,9 +11,31 @@ $(function() {
     return new_message;
   }
 
+  function automaticLoad(){
+    $.ajax({
+      url: window.location.pathname,
+      type: 'GET',
+      contentType: false,
+      processData: false,
+      dataType: 'json',
+    })
+
+    .done(function(messages){
+      $('.msgs').empty();
+      messages.forEach(function(message){
+        var html = new_message(message);
+        $('.msgs').append(html);
+      });
+      console.log("ss");
+    })
+
+    .fail(function(data){
+      alert('Automatic loading is not working properly!!');
+    })
+  };
+
   $('.msg_form').on('submit', function(e) {
     e.preventDefault();
-    var api_url = window.location.pathname;
     var formdata = new FormData($(this).get(0));
 
     $.ajax({
@@ -40,4 +62,7 @@ $(function() {
       alert('Asynchronous communication is not working properly!!');
     });
   });
+
+  //自動更新
+  window.setInterval(automaticLoad, 1000);
 });
