@@ -1,8 +1,8 @@
 class Message < ApplicationRecord
-  #association
   belongs_to :user
   belongs_to :group
 
-  #validation
+  scope :newest_order, -> { order("created_at ASC") }
+
   validates :body, presence: true
 end
