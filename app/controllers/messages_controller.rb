@@ -4,6 +4,12 @@ class MessagesController < ApplicationController
   def index
     @members = @group.users.map{|user| user[:name]}.join(' ')
     @message = Message.new
+    @messages = @group.messages.all
+
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
 
   def create
