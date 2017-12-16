@@ -1,40 +1,15 @@
 $(function() {
   function new_message(message) {
-
     var message_text = message.body.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
-
     var new_message = $('<div class="msg">' +
                 '<p class="msg__username">'+ message.name +'</p>' +
                 '<p class="msg__time">'+ message.time + '<p>' +
                 '<p class ="msg__passage">' + message_text +'</p>' +
                 '</div>');
     return new_message;
-  }
-
-  function automaticLoad(){
-    $.ajax({
-      url: window.location.pathname,
-      type: 'GET',
-      contentType: false,
-      processData: false,
-      dataType: 'json',
-    })
-
-    .done(function(messages){
-      $('.msgs').empty();
-      messages.forEach(function(message){
-        var html = new_message(message);
-        $('.msgs').append(html);
-      });
-      console.log("ss");
-    })
-
-    .fail(function(data){
-      alert('Automatic loading is not working properly!!');
-    })
   };
 
-  $('.msg_form').on('submit', function(e) {
+  function appendMessage(e){
     e.preventDefault();
     var formdata = new FormData($(this).get(0));
 
@@ -61,8 +36,31 @@ $(function() {
     .fail(function(data){
       alert('Asynchronous communication is not working properly!!');
     });
-  });
+  };
 
+  function automaticLoad(){
+    $.ajax({
+      url: window.location.pathname,
+      type: 'GET',
+      contentType: false,
+      processData: false,
+      dataType: 'json',
+    })
+
+    .done(function(messages){
+      $('.msgs').empty();
+      messages.forEach(function(message){
+        var html = new_message(message);
+        $('.msgs').append(html);
+      });
+    })
+
+    .fail(function(data){
+      alert('Automatic loading is not working properly!!');
+    })
+  };
+
+  $('.msg_form').on('submit', appendMessage);
   //自動更新
   window.setInterval(automaticLoad, 1000);
 });
