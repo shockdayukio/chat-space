@@ -24,8 +24,7 @@ $(function() {
     })
 
     .done(function(data){
-      var html = new_message(data);
-      $('.msgs').append(html);
+      $('.msgs').append(new_message(data));
       // 'chat__content'の末尾に'html'を加える
       $('.form__textfield').val('');
       //テキストフィールドを空にする
@@ -45,13 +44,12 @@ $(function() {
       contentType: false,
       processData: false,
       dataType: 'json',
-    })
+    });
 
     .done(function(messages){
       $('.msgs').empty();
       messages.forEach(function(message){
-        var html = new_message(message);
-        $('.msgs').append(html);
+        $('.msgs').append(new_message(message));
       });
     })
 
