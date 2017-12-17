@@ -38,7 +38,7 @@ $(function() {
     });
   };
 
-  function automaticLoad(){
+  function automaticMessageLoad(){
     $.ajax({
       url: window.location.pathname,
       type: 'GET',
@@ -62,5 +62,5 @@ $(function() {
 
   $('.msg_form').on('submit', appendMessage);
   //自動更新
-  window.setInterval(automaticLoad, 1000);
+  window.setInterval(automaticMessageLoad, 1000);
 });
