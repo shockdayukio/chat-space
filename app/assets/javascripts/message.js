@@ -62,5 +62,5 @@ $(function() {
 
   $('.msg_form').on('submit', appendMessage);
   //自動更新
-  window.setInterval(automaticMessageLoad, 1000);
+  window.setInterval(automaticMessageLoad, 5000);
 });
