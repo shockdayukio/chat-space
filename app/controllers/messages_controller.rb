@@ -2,7 +2,7 @@ class MessagesController < ApplicationController
   before_action :set_group, only: %i(index create)
 
   def index
-    @members = @group.users.map{|user| user[:name]}.join(' ')
+    @members = @group.users.map(&:name).join(' ')
     @message = Message.new
     @messages = @group.messages.newest_order
 
