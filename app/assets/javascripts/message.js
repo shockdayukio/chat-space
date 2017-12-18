@@ -44,7 +44,7 @@ $(function() {
       contentType: false,
       processData: false,
       dataType: 'json',
-    });
+    })
 
     .done(function(messages){
       $('.msgs').empty();
@@ -55,7 +55,7 @@ $(function() {
 
     .fail(function(data){
       alert('Automatic loading is not working properly!!');
-    })
+    });
   };
 
   $('.msg_form').on('submit', appendMessage);
