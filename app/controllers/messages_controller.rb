@@ -4,7 +4,7 @@ class MessagesController < ApplicationController
   def index
     @members = @group.users.map(&:name).join(' ')
     @message = Message.new
-    @messages = @group.messages.newest_order
+    @messages = @group.messages.sent_order
 
     respond_to do |format|
       format.html
