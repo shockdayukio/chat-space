@@ -1,6 +1,10 @@
 $(function() {
+  function escapeScript(text) {
+    return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  };
+
   function new_message(message) {
-    var message_text = message.body.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+    var message_text = escapeScript(message.body);
     var new_message = $('<div class="msg">' +
                 '<p class="msg__username">'+ message.name +'</p>' +
                 '<p class="msg__time">'+ message.time + '<p>' +
