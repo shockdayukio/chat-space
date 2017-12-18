@@ -1,8 +1,12 @@
 class Message < ApplicationRecord
-  #association
   belongs_to :user
   belongs_to :group
 
-  #validation
+  scope :sent_order, -> { order("created_at ASC") }
+
   validates :body, presence: true
+
+  def published_on
+    self.created_at.to_s
+  end
 end

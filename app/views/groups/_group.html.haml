@@ -16,7 +16,7 @@
           %p.msg__username
             = message.user.name
           %p.msg__time
-            = published_on(message)
+            = message.published_on
           %p.msg__passage
             = message.body
     = render "messages/form"
